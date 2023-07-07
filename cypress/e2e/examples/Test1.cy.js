@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('Search Features Tests', () => {
-
+    //Search "ca"
     it('Search ca', () => {
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/');
         cy.get("input[type='search']").type('ca');
