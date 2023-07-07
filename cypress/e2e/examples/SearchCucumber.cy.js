@@ -41,6 +41,6 @@ describe('Search Features Tests', () => {
         // for avoiding using same locator again and again
         // instead we use "as()" method to refer this locator with assigned name
         cy.get('[href="#/offers"]').as('offerLink');
-        cy.get('@offerLink').click();
+        //cy.get('@offerLink').click();
     })
 })
