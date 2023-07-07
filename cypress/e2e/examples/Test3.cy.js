@@ -26,8 +26,15 @@ describe('Third Test Suite', () => {
         cy.wait(1000);
         cy.get('select').select(3).should('have.value', 'option3');
 
+        // Dynamic dropdowns
+        cy.get('#autocomplete').type('turk');
+        cy.get('.ui-menu-item div').each(($el, index, $list) => {
+            if ($el.text() === 'Turkey') {
+                cy.wrap($el).click();
+            }
+        })
 
-
+        cy.get('#autocomplete').should('have.value', 'Turkey');
 
 
     })
