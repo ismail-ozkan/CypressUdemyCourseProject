@@ -24,5 +24,9 @@ describe('Fourth Test Suite', () => {
             expect(str).to.equal('Hello , Are you sure you want to confirm?');
         })
 
+        //34. Handling Child tab with combination of Cypress & Jquery commands
+        // new tab and window handling with invoke() and removeAttr() method
+        cy.get('#opentab').invoke('removeAttr','target').click();
+
     })
 })
