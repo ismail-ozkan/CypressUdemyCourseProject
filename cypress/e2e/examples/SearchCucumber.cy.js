@@ -13,9 +13,11 @@ describe('Search Features Tests', () => {
         })
         // Parent to child
         cy.get('.products').find('.product').should('have.length', 4);
-
         cy.get('.products').find('.product').eq(1).find('h4').contains('Carrot');
-        cy.get(':nth-child(3) > .product-action > button').click();
+
+        cy.get(':nth-child(3) > .product-action > button').click().then((function () {
+            console.log('sf');
+        }))
         cy.get('.products').find('.product').eq(1).contains('ADD TO CART').click();
 
         // find Cashews and click add to cart button under it
@@ -25,12 +27,20 @@ describe('Search Features Tests', () => {
                 cy.wrap($el).find('button').click();
             }
         })
+        // assert if logo text is correctly displayed
+        cy.get('.brand').should('have.text', 'GREENKART');
 
+
+        // this is to print in logs
         cy.get('.brand').then((logoelement) => {
             cy.log(logoelement.text());
         })
-        //const logoText = cy.get('.brand').then(() => {
-        //    cy.log(logoText.text());
-        //});
+        //const logoText = cy.get('.brand');
+        //cy.log(logoText);
+
+        // for avoiding using same locator again and again
+        // instead we use "as()" method to refer this locator with assigned name
+        cy.get('[href="#/offers"]').as('offerLink');
+        cy.get('@offerLink').click();
     })
 })
