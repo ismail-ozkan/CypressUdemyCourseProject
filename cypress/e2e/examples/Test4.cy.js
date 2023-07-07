@@ -2,7 +2,7 @@
 
 describe('Fourth Test Suite', () => {
 
-    it('Test Case1', () => {
+    xit('Test Case1', () => {
 
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/');
 
@@ -23,10 +23,23 @@ describe('Fourth Test Suite', () => {
             // mocha (framework)
             expect(str).to.equal('Hello , Are you sure you want to confirm?');
         })
-
+        cy.url().should('include','rahul');
         //34. Handling Child tab with combination of Cypress & Jquery commands
         // new tab and window handling with invoke() and removeAttr() method
         cy.get('#opentab').invoke('removeAttr','target').click();
 
+        // we verify that current url is "https://www.qaclickacademy.com/"
+        cy.url().should('include','https://www.qaclickacademy.com/');
+
+        //35. Navigating browser controls using Cypress
+        //cy.go("back");
+
+    })
+
+    it('Test for new tab in practice.cydeo.com', () => {
+        cy.visit('https://practice.cydeo.com/windows');
+        cy.get('a[href="/windows/new"]').invoke('removeAttr', 'target').click();
+        cy.url().should('include','new');
+        cy.go('back');
     })
 })
