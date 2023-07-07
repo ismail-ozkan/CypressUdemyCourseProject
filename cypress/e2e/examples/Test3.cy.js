@@ -36,6 +36,22 @@ describe('Third Test Suite', () => {
 
         cy.get('#autocomplete').should('have.value', 'Turkey');
 
+        // 31. Element Displayed Example
+        cy.get('#displayed-text').should('be.visible');
+        cy.get('#hide-textbox').click();
+        cy.get('#displayed-text').should('not.be.visible');
+        cy.wait(1000);
+        cy.get('#show-textbox').click();
+        cy.get('#displayed-text').should('be.visible');
+
+        // radio buttons
+        cy.get('input[value="radio1"]').check().should('be.checked');
+        cy.get('input[value="radio2"]').check().should('be.checked');
+        cy.get('input[value="radio1"]').should('not.be.checked');
+        cy.get('input[value="radio3"]').check().should('be.checked');
+        cy.get('input[value="radio2"]').should('not.be.checked');
+
+
 
     })
 })
