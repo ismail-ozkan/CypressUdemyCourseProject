@@ -9,7 +9,7 @@ describe('Eighth Test Suite', () => {
         cy.frameLoaded('#courses-iframe');
 
         cy.iframe().find('a[href*="mentorship"]').eq(0).click();
-        //cy.wait(4000)
+        cy.wait(4000)
         cy.iframe().find('.bg-pattern-1 h1').should('have.length',2);
     })
 
