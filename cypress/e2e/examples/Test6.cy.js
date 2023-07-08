@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 describe('Sixth Test Suite', () => {
 
     it('Test Case1', () => {
@@ -14,4 +15,4 @@ describe('Sixth Test Suite', () => {
 
 })
 
-/// <reference types="Cypress" />
+
