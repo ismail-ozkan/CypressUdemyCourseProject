@@ -45,7 +45,6 @@ describe('Second Framework Test Suite', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/');
         const homePage = new HomePage();
         const productPage = new ProductPage();
-        const checkoutPage = new CheckoutPage();
         homePage.getEditBox().type(this.data.name);
         homePage.getGender().select(this.data.gender);
         homePage.getTwoWayDataBinding().should('have.value', this.data.name);
@@ -64,10 +63,33 @@ describe('Second Framework Test Suite', () => {
         //52. Modifying existing tests into Page object pattern as per Cypress standards
         productPage.checkOutButton().click();
 
+        //56. Implementing the Sum of products functionality
+        var totalPrice = 0;
+        cy.get('tr td:nth-child(4) strong').each(($el,index,$list) => {
+            cy.log($el.text());
+            cy.log($el.text().substring(3));
+            const number = Number($el.text().substring(3));
+            totalPrice += number;
+        }).then(() => {
+            cy.log("totalPrice: " + totalPrice);
+            cy.get('td.text-right h3 strong').then(function (element) {
+                cy.log('element.text(): '+ element.text());
+                const displayedTotalPriceText = element.text().substring(3);
+                const displayedTotalPrice = Number(displayedTotalPriceText);
+                cy.log(displayedTotalPrice);
+                cy.log(displayedTotalPriceText===115000); // false
+                expect(displayedTotalPrice).to.equal(totalPrice);
+            })
+        });
+
+        // Understanding Asynchronous Issue
+        cy.log("totalPrice: "+totalPrice); // it's 0 cos Cypress commands are asynchronous
+
+        cy.pause();
         cy.contains('Checkout').click();
         Cypress.config("defaultCommandTimeout",12000);
         cy.get('#country').type('Turkey').then(() => {
-            cy.get('.suggestions a').click();
+            cy.get('.suggestions a').eq(1).click();
         })
         cy.get('label[for="checkbox2"]').click({force: true});
         cy.contains('Purchase').click()
