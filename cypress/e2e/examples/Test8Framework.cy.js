@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import HomePage from '../pageObject/HomePage';
 describe('Second Framework Test Suite', () => {
     //44. Agenda of framework topics and starting with test building
     before(function () {
@@ -10,7 +11,7 @@ describe('Second Framework Test Suite', () => {
 
     it('Fixture usage Test Case', function () {
         //46. How fixtures works in driving data
-        cy.visit('https://rahulshettyacademy.com/angularpractice/')
+        cy.visit('https://rahulshettyacademy.com/angularpractice/');
         cy.get("div[class='form-group'] input[name='name']").type(this.data.name);
         cy.get('select').select(this.data.gender);
         //47. Validating attribute properties and their behaviour with cypress assertions
@@ -38,5 +39,10 @@ describe('Second Framework Test Suite', () => {
             cy.selectProduct(element);
         })
     })
+    it('Test with POM', function () {
+        //51. Implementing Page object Design pattern into Cypress
+        const homePage = new HomePage();
+        cy.visit('https://rahulshettyacademy.com/angularpractice/');
+    });
 
 })
