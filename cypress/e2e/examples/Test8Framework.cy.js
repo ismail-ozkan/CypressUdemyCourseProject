@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
-import HomePage from '../pageObject/HomePage';
+import HomePage from './pageObject/HomePage.cy.js';
+import ProductPage from './pageObject/ProductPage.cy';
 describe('Second Framework Test Suite', () => {
     //44. Agenda of framework topics and starting with test building
     before(function () {
@@ -9,7 +10,7 @@ describe('Second Framework Test Suite', () => {
         })
     })
 
-    it('Fixture usage Test Case', function () {
+    xit('Fixture usage Test Case', function () {
         //46. How fixtures works in driving data
         cy.visit('https://rahulshettyacademy.com/angularpractice/');
         cy.get("div[class='form-group'] input[name='name']").type(this.data.name);
@@ -39,10 +40,28 @@ describe('Second Framework Test Suite', () => {
             cy.selectProduct(element);
         })
     })
-    it('Test with POM', function () {
+    it('Test with POM for same test case', function () {
         //51. Implementing Page object Design pattern into Cypress
-        const homePage = new HomePage();
         cy.visit('https://rahulshettyacademy.com/angularpractice/');
-    });
+        const homePage = new HomePage();
+        const productPage = new ProductPage();
+        homePage.getEditBox().type(this.data.name);
+        homePage.getGender().select(this.data.gender);
+        homePage.getTwoWayDataBinding().should('have.value', this.data.name);
+        homePage.getEditBox().should('have.attr','minlength',2);
+        homePage.getEntrepreneaur().should('be.disabled');
+        homePage.getShop().click();
+
+        cy.selectProduct('Blackberry');
+        cy.selectProduct('Nokia');
+
+        cy.reload();
+
+        this.data.productName.forEach(function (element) {
+            cy.selectProduct(element);
+        })
+        //52. Modifying existing tests into Page object pattern as per Cypress standards
+        productPage.checkOutButton().click();
+    })
 
 })
