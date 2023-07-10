@@ -3,7 +3,7 @@ describe('Second Framework Test Suite', () => {
     //44. Agenda of framework topics and starting with test building
     before(function () {
         // runs before all tests in the block
-        cy.fixture('user').then(function (data){
+        cy.fixture('example').then(function (data){
             this.data = data;
         })
     })
@@ -28,6 +28,14 @@ describe('Second Framework Test Suite', () => {
             }
         })*/
         cy.selectProduct('Blackberry');
+        cy.selectProduct('Nokia');
 
+        cy.reload();
+
+        //49. Parameterizing the test Data from Json files using each command
+        this.data.productName.forEach(function (element) {
+            cy.selectProduct(element);
+        })
     })
+
 })
