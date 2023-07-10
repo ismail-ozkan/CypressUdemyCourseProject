@@ -18,8 +18,9 @@ describe('Second Framework Test Suite', () => {
 
         cy.get("div[class='form-group'] input[name='name']").should('have.attr','minlength',2);
 
-        cy.get('#inlineRadio3').should('be.disabled');
-
+        //50 Debugging with pause() or debug() methods
+        cy.get('#inlineRadio3').should('be.disabled').debug();
+        cy.pause();
         //48. Building customized Cypress commands for reusing the code
         cy.get(':nth-child(2) > .nav-link').click();
         /*cy.get('h4.card-title a').each(($el,index, $list) => {
