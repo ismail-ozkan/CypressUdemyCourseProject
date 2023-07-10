@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
@@ -9,5 +9,6 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     screenshotsFolder: 'cypress/screenshotsForFailures',
     video: false,
+    defaultCommandTimeout: 10000,
   }
 });

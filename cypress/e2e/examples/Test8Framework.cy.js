@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 import HomePage from './pageObject/HomePage.cy.js';
-import ProductPage from './pageObject/ProductPage.cy';
+import ProductPage from './pageObject/ProductPage.cy.js';
 describe('Second Framework Test Suite', () => {
     //44. Agenda of framework topics and starting with test building
     before(function () {
@@ -45,6 +45,7 @@ describe('Second Framework Test Suite', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/');
         const homePage = new HomePage();
         const productPage = new ProductPage();
+        const checkoutPage = new CheckoutPage();
         homePage.getEditBox().type(this.data.name);
         homePage.getGender().select(this.data.gender);
         homePage.getTwoWayDataBinding().should('have.value', this.data.name);
@@ -62,6 +63,25 @@ describe('Second Framework Test Suite', () => {
         })
         //52. Modifying existing tests into Page object pattern as per Cypress standards
         productPage.checkOutButton().click();
+
+        cy.contains('Checkout').click();
+        Cypress.config("defaultCommandTimeout",12000);
+        cy.get('#country').type('Turkey').then(() => {
+            cy.get('.suggestions a').click();
+        })
+        cy.get('label[for="checkbox2"]').click({force: true});
+        cy.contains('Purchase').click()
+
+        cy.get('.alert').should('include.text', 'Success! Thank you! Your order will be delivered in next few weeks :-).')
+
+        cy.get('.alert').then(function (element) {
+            const actualText = element.text();
+            expect(actualText.includes('Success')).to.be.true;
+        })
+
+
+
+
     })
 
 })
