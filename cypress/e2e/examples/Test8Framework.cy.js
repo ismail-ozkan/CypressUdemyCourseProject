@@ -105,9 +105,10 @@ describe('Second Framework Test Suite', () => {
             expect(actualText.includes('Success')).to.be.true;
         })
 
+    })
 
-
-
+    it('Failed Test in purpose', () => {
+        expect(2+2).to.equal(5);
     })
 
 })

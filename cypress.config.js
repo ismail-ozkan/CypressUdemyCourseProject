@@ -7,6 +7,10 @@ module.exports = defineConfig({
     userId: "rahul",
     password: "3242"
   },
+  retries: {
+    runMode: 0,
+    openMode: 0,
+  },
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
