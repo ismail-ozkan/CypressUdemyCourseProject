@@ -42,7 +42,9 @@ describe('Second Framework Test Suite', () => {
     })
     it('Test with POM for same test case', function () {
         //51. Implementing Page object Design pattern into Cypress
-        cy.visit('https://rahulshettyacademy.com/angularpractice/');
+        //cy.visit('https://rahulshettyacademy.com/angularpractice/');
+         //58. Importance of environmental variables
+        cy.visit(Cypress.env('url')+'/angularpractice/');
         const homePage = new HomePage();
         const productPage = new ProductPage();
         homePage.getEditBox().type(this.data.name);
@@ -71,25 +73,27 @@ describe('Second Framework Test Suite', () => {
             const number = Number($el.text().substring(3));
             totalPrice += number;
         }).then(() => {
+            //57. Practise exercise continuation on product sum values
             cy.log("totalPrice: " + totalPrice);
             cy.get('td.text-right h3 strong').then(function (element) {
-                cy.log('element.text(): '+ element.text());
+               /* cy.log('element.text(): '+ element.text());
                 const displayedTotalPriceText = element.text().substring(3);
-                const displayedTotalPrice = Number(displayedTotalPriceText);
+                const displayedTotalPrice = Number(displayedTotalPriceText);*/
+                const displayedTotalPrice = Number(element.text().substring(3));
+
                 cy.log(displayedTotalPrice);
-                cy.log(displayedTotalPriceText===115000); // false
+                //cy.log(displayedTotalPriceText===115000); // false
                 expect(displayedTotalPrice).to.equal(totalPrice);
             })
         });
-
         // Understanding Asynchronous Issue
         cy.log("totalPrice: "+totalPrice); // it's 0 cos Cypress commands are asynchronous
 
-        cy.pause();
+        //cy.pause();
         cy.contains('Checkout').click();
         Cypress.config("defaultCommandTimeout",12000);
         cy.get('#country').type('Turkey').then(() => {
-            cy.get('.suggestions a').eq(1).click();
+            cy.get('.suggestions a').click();
         })
         cy.get('label[for="checkbox2"]').click({force: true});
         cy.contains('Purchase').click()

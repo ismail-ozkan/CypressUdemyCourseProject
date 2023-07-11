@@ -3,7 +3,7 @@
 describe('Search Features Tests', () => {
     //Search "ca"
     it('Search ca', () => {
-        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/');
+        cy.visit(Cypress.env('url')+'/seleniumPractise/#/');
         cy.get("input[type='search']").type('ca');
         cy.wait(2000);
         //cy.get('.product').should('have.length', 4); -> this gives assertion error because of visibility
