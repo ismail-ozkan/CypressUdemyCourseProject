@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run",
+    "headTest": "npm run test --headed",
+    "chromeTest": "npm run test --browser chrome",
+    "recordDashBoardTest": "npm run test --record --key 095e9025-de37-41e3-a288-e55f393bb3ac --reporter mochawesome",
+    "GreenKartTest": "npm run test --spec \"cypress/e2e/examples/dashboardTests\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^12.16.0"
+    "cypress": "^12.17.1"
   },
   "devDependencies": {
     "cypress-iframe": "^1.0.1"
