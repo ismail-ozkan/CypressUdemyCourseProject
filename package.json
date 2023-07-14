@@ -1,14 +1,14 @@
 {
-  "name": "ws_cypress_automation",
+  "name": "cypressudemycourse",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
-    "headTest": "npm run test --headed",
-    "chromeTest": "npm run test --browser chrome",
-    "recordDashBoardTest": "npm run test --record --key 095e9025-de37-41e3-a288-e55f393bb3ac --reporter mochawesome",
-    "GreenKartTest": "npm run test --spec \"cypress/e2e/examples/dashboardTests\""
+    "headTest": "npx cypress run --headed",
+    "chromeTest": "npx cypress run --browser chrome",
+    "chromeTestParallel": "npx cypress run --browser chrome --parallel",
+    "recordDashBoardTest": "npx cypress run --record --key fff675a2-25a0-4f7d-a5a8-8568c55570c6 --reporter mochawesome",
+    "specTest": "npx cypress run --spec \"cypress/e2e/examples/\""
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,8 @@
     "cypress": "^12.17.1"
   },
   "devDependencies": {
-    "cypress-iframe": "^1.0.1"
-  }
+    "cypress-iframe": "^1.0.1",
+    "mochawesome": "^7.1.3"
+  },
+  "description": ""
 }
