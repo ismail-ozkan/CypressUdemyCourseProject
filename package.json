@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx cypress run",
+    "open": "npx cypress open",
     "headTest": "npx cypress run --headed",
     "chromeTest": "npx cypress run --browser chrome",
     "chromeTestParallel": "npx cypress run --browser chrome --parallel",
@@ -14,6 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.2",
+    "@cypress/browserify-preprocessor": "^3.0.2",
     "cypress": "^12.17.1"
   },
   "devDependencies": {
