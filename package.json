@@ -12,6 +12,12 @@
     "specTest": "npx cypress run --spec cypress/e2e/examples/BDD/*.feature --headed --browser chrome",
     "regressionTest": "npx cypress run --env tag=\"@Regression\" --headed --browser chrome"
   },
+  "cypress-cucumber-preprocessor": {
+    "json": {
+      "enabled": true,
+      "output": "cypress/cucumberReport/results.json"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,7 +28,8 @@
   },
   "devDependencies": {
     "cypress-iframe": "^1.0.1",
-    "mochawesome": "^7.1.3"
+    "mochawesome": "^7.1.3",
+    "multiple-cucumber-html-reporter": "^3.4.0"
   },
   "description": ""
 }
