@@ -18,7 +18,26 @@ Given('get a book instead of all books', function (){
 
     }).as('bookretrievals');
     cy.get('button[class="btn btn-primary"]').click();
-    cy.wait('@bookretrievals');
+    cy.wait('@bookretrievals').then(({request,response}) => {
+        cy.get('tr').should('have.length',response.body.length+1);
+
+    })
 
     cy.get('p').should('contain','Oops only 1 Book available');
 })
+When('get all books from ui and api', function () {
+    cy.visit('https://rahulshettyacademy.com/angularAppdemo/');
+
+    cy.intercept({
+            method: 'GET',
+            url: 'https://rahulshettyacademy.com/Library/GetBook.php?AuthorName=shetty'
+        }).as('bookretrievals');
+    cy.get('button[class="btn btn-primary"]').click();
+
+});
+Then('compare ui and api', function () {
+    cy.wait('@bookretrievals').then(({request,response}) => {
+        cy.get('tr').should('have.length',response.body.length+1);
+        cy.log("response.body.length : "+ response.body.length);
+    })
+});
