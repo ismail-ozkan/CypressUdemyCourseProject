@@ -9,7 +9,8 @@
     "chromeTest": "npx cypress run --browser chrome",
     "chromeTestParallel": "npx cypress run --browser chrome --parallel",
     "recordDashBoardTest": "npx cypress run --record --key fff675a2-25a0-4f7d-a5a8-8568c55570c6 --reporter mochawesome",
-    "specTest": "npx cypress run --spec \"cypress/e2e/examples/\""
+    "specTest": "npx cypress run --spec cypress/e2e/examples/BDD/*.feature --headed --browser chrome",
+    "regressionTest": "npx cypress run --env tag=\"@Regression\" --headed --browser chrome"
   },
   "keywords": [],
   "author": "",
